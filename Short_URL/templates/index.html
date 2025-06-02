@@ -25,29 +25,29 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 2rem 1rem;
+      padding: 5rem 1rem;
     }
     form {
       display: flex;
-      flex-direction: row;
       gap: 1rem;
       width: 100%;
       max-width: 600px;
-      margin-top: 2rem;
+      justify-content: center;
     }
     input[type="url"] {
       flex: 1;
-      padding: 0.8rem;
+      padding: 0.8rem 1rem;
       font-size: 1rem;
       border: 1px solid #ccc;
       border-radius: 5px;
+      box-sizing: border-box;
     }
     button {
+      padding: 0.8rem 1.2rem;
+      font-size: 1rem;
       background-color: #28a745;
       color: white;
       border: none;
-      padding: 0.8rem 1.2rem;
-      font-size: 1rem;
       border-radius: 5px;
       cursor: pointer;
     }
@@ -86,38 +86,59 @@
     </form>
 
     <h2 id="shortURL-Label"></h2>
+    <button hidden id="copyButton" type="button">Copy Link</button>
 
     <script>
-        document.getElementById('urlForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const inputBox = document.getElementById('urlInput');
-        const url = inputBox.value;
         const urlLabel = document.getElementById("shortURL-Label");
 
-        fetch('http://localhost:5000/shorten', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ "longURL": url }),
-            mode: 'cors' // important
-        })
-        .then(response => response.json())
-        .then(data => {
-            //alert('Short URL: ' + data.shortURL);
-            urlLabel.innerHTML = 'Short URL: <a href="' + data.shortURL + '" target="_blank">' + data.shortURL + '</a>';
-            inputBox.value = "";
-        })
-        .catch(err => {
-            urlLabel.textContent = "Something went wrong: " + err.message;
-            console.error(err);
+        const copyContent = async () => {
+            try {
+              const text = urlLabel.querySelector('a').getAttribute('href');
+              await navigator.clipboard.writeText(text);
+              alert('Link copied to clipboard');
+            } catch (err) {
+              alert('Failed to copy: ', err);
+            }
+        }
+
+        const copyBtn = document.getElementById('copyButton')
+        copyBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+
+          copyContent();
         });
-        });
+
+        document.getElementById('urlForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const inputBox = document.getElementById('urlInput');
+            const url = inputBox.value;
+
+            fetch('http://localhost:5000/shorten', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ "longURL": url }),
+                mode: 'cors' // important
+            })
+            .then(response => response.json())
+            .then(data => {
+                //alert('Short URL: ' + data.shortURL);
+                urlLabel.innerHTML = '<a href="' + data.shortURL + '" target="_blank">' + data.shortURL + '</a>';
+                inputBox.value = "";
+                copyBtn.hidden = false;
+            })
+            .catch(err => {
+                urlLabel.textContent = "Something went wrong: " + err.message;
+                console.error(err);
+            });
+      });
+            
     </script>
 
     <section class="features">
-      <h2>How It Works</h2>
-      <p>Paste your long URL into the field above, click "Shorten", and get a compact link ready to share anywhere. Perfect for social media, email, and SMS.</p>
+      <h2>How to use it</h2>
+      <p>Paste your long URL into the field above, click "Shorten", and get a compact link that will redirect someone to the original URL</p>
     </section>
   </main>
 </body>
