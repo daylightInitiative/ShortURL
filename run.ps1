@@ -1,17 +1,8 @@
-# Start the backend in a new Command Prompt window
-Start-Process powershell -ArgumentList "-NoExit", "-File", "bootstrap.ps1"
+# Set the environment variable
+$env:FLASK_APP = "./Short_URL/main.py"
 
+# Print a message
+Write-Host "Running Flask App bootstrap"
 
-# Wait for Flask to start
-Start-Sleep -Seconds 5
-
-# Create and send the JSON payload (ISO 3166-1 ALPHA-2 standard)
-$body = @{
-    longURL = "https://google.com/"
-}
-$json = $body | ConvertTo-Json
-
-Invoke-RestMethod -Uri "http://localhost:5000/shorten" `
-                  -Method POST `
-                  -ContentType "application/json" `
-                  -Body $json
+# Run Flask with pipenv
+pipenv run flask --debug run -h 0.0.0.0

@@ -123,8 +123,8 @@
             })
             .then(response => response.json())
             .then(data => {
-                //alert('Short URL: ' + data.shortURL);
-                urlLabel.innerHTML = '<a href="' + data.shortURL + '" target="_blank">' + data.shortURL + '</a>';
+                alert('Short URL: ' + data.shortURL);
+                urlLabel.innerHTML = '<a href="' + data.shortURL + '" target="_blank">' + "http://localhost:5000/" + data.shortURL + '</a>';
                 inputBox.value = "";
                 copyBtn.hidden = false;
             })
