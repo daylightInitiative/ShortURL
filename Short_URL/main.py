@@ -12,7 +12,13 @@ from Short_URL.utility import get_shortened_url, is_valid_url
 
 app = Flask(__name__)
 
+from flask_admin import Admin
+
 app.config["RATELIMIT_HEADERS_ENABLED"] = True  # sends X-RateLimit headers
+app.config['FLASK_ADMIN_SWATCH'] = 'flatly'
+
+# setup the flask admin panel
+admin = Admin(app, name='admin-panel', template_mode='bootstrap3')
 
 limiter = Limiter(
     key_func=get_remote_address,

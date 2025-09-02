@@ -4,73 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ShortURL - Shorten Your URLs Instantly</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f4f6f8;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #2664a6;
-      color: white;
-      padding: 2rem 1rem;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
-    main {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 5rem 1rem;
-    }
-    form {
-      display: flex;
-      gap: 1rem;
-      width: 100%;
-      max-width: 600px;
-      justify-content: center;
-    }
-    input[type="url"] {
-      flex: 1;
-      padding: 0.8rem 1rem;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-sizing: border-box;
-    }
-    button {
-      padding: 0.8rem 1.2rem;
-      font-size: 1rem;
-      background-color: #28a745;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .features {
-      max-width: 800px;
-      margin-top: 4rem;
-      text-align: center;
-    }
-    .features h2 {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-    }
-    .features p {
-      font-size: 1.1rem;
-      color: #333;
-    }
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      background: #e9ecef;
-      color: #555;
-    }
-  </style>
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/mystyle.css') }}">
 </head>
 <body>
 

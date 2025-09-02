@@ -6,6 +6,8 @@ from Short_URL.redis_client import redis_client
 
 alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
+# base62 is url safe
+
 def to_base62(num: int) -> str:
     if num == 0:
         return alphabet[0]
