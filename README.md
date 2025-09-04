@@ -2,7 +2,7 @@
 A url shortening microservice API implemented with flask
 
 [0.1.1] Improvements: Switching from database to Redis (redis[hiredis]) for caching, rate limiting and speed
-[0.1.2] Added run file for linux, seperated css into a seperate file
+[0.1.2] Added run file for linux, seperated css into a seperate file, added basic admin panel and initial design
 
 ## How to run
 On windows install ubuntu WSL (or any other distro) and run ```redis-server``` Then run .\run.ps1 while in the main directory.

@@ -13,6 +13,14 @@
     <p>Shorten your long URLs and share them</p>
   </header>
 
+  {% if current_user.is_authenticated %}
+      <p>Hello, {{ current_user.email }}!</p>
+      <a href="{{ url_for('security.logout') }}">Logout</a>
+      <a href="{{ url_for('admin.index') }}">Admin Panel</a>
+    {% else %}
+      <a href="{{ url_for('security.login') }}">Login</a>
+    {% endif %}
+
   <main>
     <form id="urlForm">
         <input type="text" id="urlInput" placeholder="Enter URL" required>

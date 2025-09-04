@@ -8,6 +8,8 @@ flask-cors = "*"
 flask-sqlalchemy = "*"
 redis = {extras = ["hiredis"], version = "*"}
 flask-admin = "*"
+flask-security = "*"
+flask-wtf = "*"
 
 [dev-packages]
 
