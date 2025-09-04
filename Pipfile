@@ -10,6 +10,7 @@ redis = {extras = ["hiredis"], version = "*"}
 flask-admin = "*"
 flask-security = "*"
 flask-wtf = "*"
+colorama = "*"
 
 [dev-packages]
 
